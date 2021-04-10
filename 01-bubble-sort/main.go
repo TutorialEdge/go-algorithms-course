@@ -4,11 +4,10 @@ import (
 	"fmt"
 )
 
-var toBeSorted [10]int = [10]int{1, 3, 2, 4, 8, 6, 7, 2, 3, 0}
-
-func bubbleSort(input [10]int) {
+// BubbleSort - takes in an input which is a slice of ints and returns the sorted slice
+func BubbleSort(input []int) []int {
 	// n is the number of items in our list
-	n := 10
+	n := len(input)
 	// set swapped to true
 	swapped := true
 	// loop
@@ -16,14 +15,14 @@ func bubbleSort(input [10]int) {
 		// set swapped to false
 		swapped = false
 		// iterate through all of the elements in our list
-		for i := 1; i < n; i++ {
+		for i := 0; i < n-1; i++ {
 			// if the current element is greater than the next
 			// element, swap them
-			if input[i-1] > input[i] {
+			if input[i] > input[i+1] {
 				// log that we are swapping values for posterity
 				fmt.Println("Swapping")
 				// swap values using Go's tuple assignment
-				input[i], input[i-1] = input[i-1], input[i]
+				input[i], input[i+1] = input[i+1], input[i]
 				// set swapped to true - this is important
 				// if the loop ends and swapped is still equal
 				// to false, our algorithm will assume the list is
@@ -32,11 +31,15 @@ func bubbleSort(input [10]int) {
 			}
 		}
 	}
-	// finally, print out the sorted list
-	fmt.Println(input)
+
+	return input
 }
 
 func main() {
-	fmt.Println("Hello World")
-	bubbleSort(toBeSorted)
+	fmt.Println("Bubble Sorting Algorithm in Go")
+
+	unsortedInput := []int{5, 3, 4, 1, 2}
+	sorted := BubbleSort(unsortedInput)
+
+	fmt.Println(sorted)
 }
